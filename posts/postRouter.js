@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validatePostId, (req, res) => {
   Post.getById(req.params.id)
     .then(post => {
       if (post) {
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validatePostId, (req, res) => {
   Post.remove(req.params.id)
     .then(count => {
       if (count > 0) {
@@ -51,7 +51,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validatePostId, (req, res) => {
   const changes = req.body;
   const id = req.params.id;
     
